@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlightRMSGroup4.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid Margin="5" x:Name="mainButtons_grd">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Flight Management" x:Name="flightMenu_btn" Clicked="OnClick_FlightMenu" Grid.Row="0" Grid.Column="1" Margin="10" BackgroundColor="#6993ff" TextColor="Black"/>
+                <Button Text="Reservation Management" x:Name="reservationMenu_btn" Clicked="OnClick_ReservationMenu" Grid.Row="0" Grid.Column="2" Margin="10" BackgroundColor="#b5b5b5" TextColor="Black"/>
+            </Grid>
+
+            <Grid Margin="5" x:Name="flightNReservation_grd">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Airport Origin:" Grid.Row="0" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Airport Destination:" Grid.Row="0" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Week Day:" Grid.Row="0" Grid.Column="2" Margin="10" TextColor="#6993ff"/>
+
+                <Picker x:Name="airportOrigin_pck" Grid.Row="1" Grid.Column="0" Margin="10"/>
+                <Picker x:Name="airportDestination_pck" Grid.Row="1" Grid.Column="1" Margin="10"/>
+                <Picker x:Name="weekDay_pck" Grid.Row="1" Grid.Column="2" Margin="10"/>
+
+                <Button Text="Search   →" x:Name="queryFlights_btn" Clicked="OnClick_QueryFlights" Grid.Row="2" Grid.Column="0" Margin="10" BackgroundColor="#6993ff" TextColor="Black"/>
+                <Picker x:Name="queriedFlights_pck" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" SelectedIndexChanged="OnSelectedFlight"/>
+
+                <Label Text="Flight Code:" Grid.Row="3" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Airline:" Grid.Row="3" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Day:" Grid.Row="3" Grid.Column="2" Margin="10" TextColor="#6993ff"/>
+
+                <Label Text="-" x:Name="flightCode_lbl" Grid.Row="4" Grid.Column="0" Margin="10"/>
+                <Label Text="-" x:Name="flightAirline_lbl" Grid.Row="4" Grid.Column="1" Margin="10"/>
+                <Label Text="-" x:Name="flightDay_lbl" Grid.Row="4" Grid.Column="2" Margin="10"/>
+
+                <Label Text="Time:" Grid.Row="5" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Cost:" Grid.Row="5" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+
+                <Label Text="-" x:Name="flightTime_lbl" Grid.Row="6" Grid.Column="0" Margin="10"/>
+                <Label Text="-" x:Name="flightCost_lbl" Grid.Row="6" Grid.Column="1" Margin="10"/>
+
+                <Label Text="Reserve For (- Reservations Available):" x:Name="reserveFor_lbl" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" Margin="10" FontSize="Title" TextColor="#6993ff"/>
+                
+                <Grid Margin="5" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Entry x:Name="name_etr" Placeholder="Name" Margin="10" IsEnabled="False" TextChanged="OnReservationInfoTyped"/>
+                    <Entry x:Name="citizenship_etr" Placeholder="Citizenship" Grid.Column="1" Margin="10" IsEnabled="False" TextChanged="OnReservationInfoTyped"/>
+                </Grid>
+
+                <Button Text="Reserve" x:Name="reserve_btn" Clicked="OnClick_Reserve" Grid.Row="9" Grid.Column="1" Margin="10" BackgroundColor="#b5b5b5" TextColor="Black"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
