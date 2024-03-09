@@ -16,8 +16,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Text="Flight Management" x:Name="flightMenu_btn" Clicked="OnClick_FlightMenu" Grid.Row="0" Grid.Column="1" Margin="10" BackgroundColor="#6993ff" TextColor="Black"/>
-                <Button Text="Reservation Management" x:Name="reservationMenu_btn" Clicked="OnClick_ReservationMenu" Grid.Row="0" Grid.Column="2" Margin="10" BackgroundColor="#b5b5b5" TextColor="Black"/>
+                <Button Text="Flight Management" x:Name="flightMenu_btn" Clicked="OnClick_FlightMenu" Grid.Row="0" Grid.Column="1" Margin="10" BackgroundColor="#28004F" TextColor="#E9C84F"/>
+                <Button Text="Reservation Management" x:Name="reservationMenu_btn" Clicked="OnClick_ReservationMenu" Grid.Row="0" Grid.Column="2" Margin="10" BackgroundColor="#28004F" TextColor="#E9C84F"/>
             </Grid>
 
             <Grid Margin="5" x:Name="flightNReservation_grd">
@@ -87,6 +87,42 @@
                 </Grid>
 
                 <Button Text="Reserve" x:Name="reserve_btn" Clicked="OnClick_Reserve" Grid.Row="9" Grid.Column="1" Margin="10" BackgroundColor="#b5b5b5" TextColor="Black"/>
+                <Label Text="Reservation Code" Grid.Row="10" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center"/>
+                <Label Text="- - - - -" x:Name="reservation_code" Grid.Row="10" Grid.Column="1" Margin="30" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid Margin="5" x:Name="Reservation_grd">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Search" Grid.Row="0" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center" FontSize="Title"/>
+
+                <Label Text="Code:" Grid.Row="1" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Name:" Grid.Row="3" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Airline:" Grid.Row="5" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Button Text="Find Reservations" x:Name="find_reserve_btn" Clicked="OnClick_FindReservation" Grid.Row="7" Grid.Column="1" Margin="10" TextColor="Black"/>
+
+                <Entry Placeholder="Please enter your reservation code" Grid.Row="2" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Entry Placeholder="Please enter your name" Grid.Row="4" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Entry Placeholder="Please enter your chosen airline" Grid.Row="6" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+
+                <Label Text="Reservations" Grid.Row="8" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center" FontSize="Title"/>
+                <Picker Grid.Row="9" Grid.Column="0" Margin="10" TextColor="#6993ff" Grid.ColumnSpan="3"/>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
