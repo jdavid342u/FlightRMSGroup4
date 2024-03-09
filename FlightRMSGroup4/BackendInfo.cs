@@ -11,17 +11,34 @@ namespace FlightRMSGroup4
         public static List<Flight> Flights = Flight.LoadFlights();
         public static List<Airport> Airports = Airport.LoadAirports();
 
-        public static string GetPath(string path)
+        public static string GetPath(string[] path)
         {
-            List<string> DirectoryParts = AppDomain.CurrentDomain.BaseDirectory.Split(@"\").ToList();
+            string delimiter = @"\"; /* default windows but will be determined next */
+
+            /* from the App Base Directory find the first occurrence of either '/' or '\' and use that as default delimiter */
+            foreach(Char c in AppDomain.CurrentDomain.BaseDirectory)
+            {
+                if(c == '\\' || c == '/')
+                {
+                    delimiter = c.ToString();
+                    break;
+                }
+            }
+            
+            List<string> DirectoryParts = AppDomain.CurrentDomain.BaseDirectory.Split(delimiter).ToList();
             int projectIndex = DirectoryParts.FindLastIndex(x => x.ToLower() == "flightrmsgroup4");
             DirectoryParts.RemoveAll(x => DirectoryParts.IndexOf(x) > projectIndex);
             string output = "";
             foreach (string pathPart in DirectoryParts)
             {
-                output += $@"{pathPart}\";
+                output += $@"{pathPart}{delimiter}";
             }
-            output += $@"{path}";
+
+            for(int i = 0; i < path.Length; i++)
+            {
+                output += $"{path[i]}";
+                if(i < path.Length - 1) { output += $"{delimiter}"; }
+            }
 
             return output;
         }
