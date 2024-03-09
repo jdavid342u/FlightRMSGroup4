@@ -20,7 +20,7 @@ namespace FlightRMSGroup4
         public static List<Airport> LoadAirports()
         {
             List<Airport> output = new List<Airport>();
-            string path = BackendInfo.GetPath(@"Resources\airports.csv");
+            string path = BackendInfo.GetPath(["Resources", "airports.csv"]);
             string[] AirportRawStrings = File.ReadAllLines(path);
 
             foreach (string rawStr in AirportRawStrings)
