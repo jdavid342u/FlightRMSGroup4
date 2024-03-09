@@ -35,7 +35,7 @@ namespace FlightRMSGroup4
         public static List<Flight> LoadFlights()
         {
             List<Flight> output = new List<Flight>();
-            string path = BackendInfo.GetPath(@"Resources\flights.csv");
+            string path = BackendInfo.GetPath(["Resources", "flights.csv"]);
             string[] FlightRawStrings = File.ReadAllLines(path);
 
             foreach(string rawStr in FlightRawStrings)
