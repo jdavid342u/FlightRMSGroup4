@@ -50,7 +50,7 @@ namespace FlightRMSGroup4
         }
 
         // Helper method to retrieve Flight object based on FlightCode from Reservation
-        private Flight GetFlightByCode(string flightCode)
+        private static Flight GetFlightByCode(string flightCode)
         {
             // Need to impliment Flight data, well return null for now
             return null;
