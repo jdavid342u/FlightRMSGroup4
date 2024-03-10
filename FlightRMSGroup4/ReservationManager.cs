@@ -40,7 +40,7 @@ namespace FlightRMSGroup4
             _reservations.Add(reservation); // Add reservation to internal list
         }
 
-        public List<Reservation> FindReservations(string reservationCode = null, string airline = null, string name = null)
+        public static List<Reservation> FindReservations(string reservationCode = null, string airline = null, string name = null)
         {
             var filteredReservations = _reservations.Where(r =>
                 (string.IsNullOrEmpty(reservationCode) || r.ReservationCode == reservationCode) &&
