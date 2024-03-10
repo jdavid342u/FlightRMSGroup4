@@ -130,11 +130,11 @@ namespace FlightRMSGroup4
                 return;
             }
 
-            string reservationCodeStr = GenerateReservationCode();
+            string reservationCodeStr = ReservationManager.GenerateReservationCode();
             string reservName = name_etr.Text.Trim();
             string reservCitizenship = citizenship_etr.Text.Trim();
             
-            ReservationManager.MakeReservation(BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code), reservName, reservCitizenship);
+            ReservationManager.MakeReservation(reservationCodeStr, BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code), reservName, reservCitizenship);
             selectedFlight = BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code);
             reserveFor_lbl.Text = $"Reserve For ({selectedFlight.ReservationsLeft.ToString()} Reservations Available):";
             
@@ -143,23 +143,6 @@ namespace FlightRMSGroup4
             reservation_code.Text = reservationCodeStr;
 
             DisplayAlert("", $"Successful reservation.\n\nReserved for: {reservName}\nPassenger Nationality: {reservCitizenship}\nReservation Code: {reservationCodeStr}\n\nTo lookup this information later please go to Reservation Management menu.", "Ok");
-        }
-
-        private string GenerateReservationCode()
-        {
-            Random random = new Random();
-            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string digits = "0123456789";
-
-            char letter = letters[random.Next(letters.Length)];
-            string randomNumber = "";
-            for (int i = 0; i < 4; i++)
-            {
-                randomNumber += digits[random.Next(digits.Length)];
-            }
-
-            string reservation_code = letter.ToString() + randomNumber;
-            return reservation_code;
         }
 
         private void OnClick_FindReservation(object sender, EventArgs e)
