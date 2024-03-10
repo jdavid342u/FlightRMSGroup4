@@ -53,5 +53,17 @@ namespace FlightRMSGroup4
 
             return queriedFlights;
         }
+
+        public static void UpdateFlightsCsvFile()
+        {
+            string[] flightsCsv = new string[Flights.Count];
+
+            foreach(Flight f in Flights)
+            {
+                flightsCsv[Flights.IndexOf(f)] = $"{f.Code},{f.Airline},{f.AirportOrigin},{f.AirportDestination},{f.WeekDay},{f.DepartureTime},{f.ReservationsLeft.ToString()},{f.Cost.ToString()}";
+            }
+
+            File.WriteAllLines(GetPath(["Resources", "flights.csv"]), flightsCsv);
+        }
     }
 }
