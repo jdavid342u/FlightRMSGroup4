@@ -16,8 +16,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Text="Flight Management" x:Name="flightMenu_btn" Clicked="OnClick_FlightMenu" Grid.Row="0" Grid.Column="1" Margin="10" BackgroundColor="#28004F" TextColor="#E9C84F"/>
-                <Button Text="Reservation Management" x:Name="reservationMenu_btn" Clicked="OnClick_ReservationMenu" Grid.Row="0" Grid.Column="2" Margin="10" BackgroundColor="#28004F" TextColor="#E9C84F"/>
+                <Button Text="Flight Management" x:Name="flightMenu_btn" Clicked="OnClick_FlightMenu" Grid.Row="0" Grid.Column="1" Margin="10" BackgroundColor="#6993ff" TextColor="Black"/>
+                <Button Text="Reservation Management" x:Name="reservationMenu_btn" Clicked="OnClick_ReservationMenu" Grid.Row="0" Grid.Column="2" Margin="10" BackgroundColor="#B5B5B5" TextColor="Black"/>
             </Grid>
 
             <Grid Margin="5" x:Name="flightNReservation_grd">
@@ -91,7 +91,7 @@
                 <Label Text="- - - - -" x:Name="reservation_code" Grid.Row="10" Grid.Column="1" Margin="30" HorizontalTextAlignment="Center"/>
             </Grid>
 
-            <Grid Margin="5" x:Name="Reservation_grd">
+            <Grid Margin="5" x:Name="Reservation_grd" IsVisible="false">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

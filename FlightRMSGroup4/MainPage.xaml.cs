@@ -74,15 +74,15 @@ namespace FlightRMSGroup4
 
         private void OnClick_FlightMenu(object sender, EventArgs e)
         {
-            if(flightNReservation_grd.IsVisible == true && Reservation_grd.IsVisible == false)
-            {
-                Reservation_grd.IsVisible = true;
-                flightMenu_btn.BackgroundColor = Color.FromArgb("#28004F");
-                reservationMenu_btn.BackgroundColor = Color.FromArgb("#28004F");
-                flightMenu_btn.TextColor = Color.FromArgb("#E9C84F");
-                reservationMenu_btn.TextColor = Color.FromArgb("#E9C84F");
-                return;
-            }
+            //if(flightNReservation_grd.IsVisible == true && Reservation_grd.IsVisible == false)
+            //{
+            //    Reservation_grd.IsVisible = true;
+            //    flightMenu_btn.BackgroundColor = Color.FromArgb("#6993ff");
+            //    reservationMenu_btn.BackgroundColor = Color.FromArgb("#b5b5b5");
+            //    flightMenu_btn.TextColor = Color.FromArgb("#000");
+            //    reservationMenu_btn.TextColor = Color.FromArgb("#000");
+            //    return;
+            //}
 
             flightNReservation_grd.IsVisible = true;
             Reservation_grd.IsVisible = false;
@@ -94,15 +94,15 @@ namespace FlightRMSGroup4
 
         private void OnClick_ReservationMenu(object sender, EventArgs e)
         {
-            if (Reservation_grd.IsVisible == true && flightNReservation_grd.IsVisible == false)
-            {
-                flightNReservation_grd.IsVisible = true;
-                flightMenu_btn.BackgroundColor = Color.FromArgb("#28004F");
-                reservationMenu_btn.BackgroundColor = Color.FromArgb("#28004F");
-                flightMenu_btn.TextColor = Color.FromArgb("#E9C84F");
-                reservationMenu_btn.TextColor = Color.FromArgb("#E9C84F");
-                return;
-            }
+            //if (Reservation_grd.IsVisible == true && flightNReservation_grd.IsVisible == false)
+            //{
+            //    flightNReservation_grd.IsVisible = true;
+            //    flightMenu_btn.BackgroundColor = Color.FromArgb("#b5b5b5");
+            //    reservationMenu_btn.BackgroundColor = Color.FromArgb("#6993ff");
+            //    flightMenu_btn.TextColor = Color.FromArgb("#000");
+            //    reservationMenu_btn.TextColor = Color.FromArgb("#000");
+            //    return;
+            //}
 
             flightNReservation_grd.IsVisible = false;
             Reservation_grd.IsVisible = true;
@@ -130,7 +130,7 @@ namespace FlightRMSGroup4
                 return;
             }
 
-            string reservationCodeStr = ReservationManager.GenerateReservationCode();
+            string reservationCodeStr = ReservationManager.UniqueReservationCode();
             string reservName = name_etr.Text.Trim();
             string reservCitizenship = citizenship_etr.Text.Trim();
             
