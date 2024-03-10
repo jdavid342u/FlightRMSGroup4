@@ -32,6 +32,12 @@ namespace FlightRMSGroup4
             this.Label = $"{Code} ({WeekDay}): {AirportOrigin} -> {AirportDestination} by {Airline}";
         }
 
+        public void ReserveSeat(Flight f)
+        {
+            f.ReservationsLeft--;
+            BackendInfo.UpdateFlightsCsvFile();
+        }
+        
         public static List<Flight> LoadFlights()
         {
             List<Flight> output = new List<Flight>();
