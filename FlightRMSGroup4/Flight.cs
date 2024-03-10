@@ -50,6 +50,12 @@ namespace FlightRMSGroup4
             f.ReservationsLeft--;
             BackendInfo.UpdateFlightsCsvFile();
         }
+
+        public void AddSeat(Flight f)
+        {
+            f.ReservationsLeft++;
+            BackendInfo.UpdateFlightsCsvFile();
+        }
         
         public static List<Flight> LoadFlights()
         {
