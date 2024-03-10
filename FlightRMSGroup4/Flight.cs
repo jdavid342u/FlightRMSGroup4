@@ -18,6 +18,19 @@ namespace FlightRMSGroup4
         public int ReservationsLeft { get; set; }
         public double Cost { get; set; }
         public string Label { get; set; }
+        public bool IsFullyBooked {
+            get
+            {
+                if(ReservationsLeft <= 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
         public Flight(string Code, string Airline, string AirportOrigin, string AirportDestination, string WeekDay, string DepartureTime, int ReservationsLeft, double Cost)
         {
