@@ -5,14 +5,14 @@ namespace FlightRMSGroup4
 {
     public class ReservationManager
     {
-        private readonly List<Reservation> _reservations;
+        private static List<Reservation> _reservations = new List<Reservation>();
 
         public ReservationManager()
         {
             _reservations = new List<Reservation>(); // Initialize list
         }
 
-        public void MakeReservation(Flight flight, string name, string citizenship)
+        public static void MakeReservation(Flight flight, string name, string citizenship)
         {
             if (flight == null)
             {
@@ -34,9 +34,11 @@ namespace FlightRMSGroup4
                 throw new Exception("Flight is fully booked!");
             }
 
-            flight.ReserveSeat(); // Assuming a ReserveSeat method exists in the Flight class
+            string resCode = "123";
 
-            var reservation = new Reservation(flight.FlightCode, name, citizenship);
+            flight.ReserveSeat(flight);
+
+            var reservation = new Reservation(resCode, flight.Code, name, citizenship);
             _reservations.Add(reservation); // Add reservation to internal list
         }
 
