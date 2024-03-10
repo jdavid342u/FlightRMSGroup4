@@ -6,7 +6,7 @@ namespace FlightRMSGroup4
     public partial class MainPage : ContentPage
     {
         bool flightSelected = false;
-        int currFlightReservationsLeft = 0;
+        Flight selectedFlight;
 
         ObservableCollection<Airport> airports = new ObservableCollection<Airport>(BackendInfo.Airports);
         ObservableCollection<string> weekDays = new ObservableCollection<string> { "Any", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
@@ -54,9 +54,8 @@ namespace FlightRMSGroup4
 
         private void OnSelectedFlight(object sender, EventArgs e)
         {
-            Flight selectedFlight = ((Picker)sender).SelectedItem as Flight;
+            selectedFlight = ((Picker)sender).SelectedItem as Flight;
             if(selectedFlight is null) { return; }
-            currFlightReservationsLeft = selectedFlight.ReservationsLeft;
             ChangeFlightInfo(true, selectedFlight.Code, selectedFlight.Airline, selectedFlight.WeekDay, selectedFlight.DepartureTime, selectedFlight.Cost.ToString(), selectedFlight.ReservationsLeft.ToString());
         }
 
@@ -70,7 +69,6 @@ namespace FlightRMSGroup4
 
             queriedFlights_pck.ItemsSource = new ObservableCollection<Flight>(BackendInfo.QueryFlights(airportOrigin, airportDestiny, weekDay));
             ChangeFlightInfo(flightSelectedPrm: false);
-            currFlightReservationsLeft = 0;
             DisplayAlert("", "List updated", "Ok");
         }
 
@@ -121,20 +119,32 @@ namespace FlightRMSGroup4
                 DisplayAlert("Alert", "Must select a flight before attempting to make a reservation.", "Ok");
                 return;
             }
-            else if (currFlightReservationsLeft <= 0)
+            else if (selectedFlight.ReservationsLeft <= 0)
             {
                 DisplayAlert("Alert", "Can not reserve. Flight does not have any reservations available.", "Ok");
                 return;
             }
-            else if (String.IsNullOrEmpty(name_etr.Text.Trim()) || String.IsNullOrEmpty(citizenship_etr.Text.Trim()) || citizenship_etr.Text.Length < 3)
+            else if (String.IsNullOrEmpty(name_etr.Text.Trim()) || String.IsNullOrEmpty(citizenship_etr.Text.Trim()) || citizenship_etr.Text.Length < 2)
             {
                 DisplayAlert("Alert", "Must fill 'Name' and 'Citizenship' fields in order to attempt reservation.", "Ok");
                 return;
             }
 
-            DisplayAlert("", "Successful reservation.", "Ok");
-            string reservationCode = GenerateReservationCode();
-            reservation_code.Text = reservationCode;
+            /* Decrease n. of reservations in the corresponding element of Flights List */
+            BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code).ReservationsLeft--;
+
+            BackendInfo.UpdateFlightsCsvFile();
+            selectedFlight = BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code);
+            reserveFor_lbl.Text = $"Reserve For ({selectedFlight.ReservationsLeft.ToString()} Reservations Available):";
+            
+            string reservationCodeStr = GenerateReservationCode();
+            string reservName = name_etr.Text.Trim();
+            string reservCitizenship = citizenship_etr.Text.Trim();
+            name_etr.Text = "";
+            citizenship_etr.Text = "";
+            reservation_code.Text = reservationCodeStr;
+
+            DisplayAlert("", $"Successful reservation.\n\nReserved for: {reservName}\nPassenger Nationality: {reservCitizenship}\nReservation Code: {reservationCodeStr}\n\nTo lookup this information later please go to Reservation Management menu.", "Ok");
         }
 
         private string GenerateReservationCode()
@@ -161,7 +171,7 @@ namespace FlightRMSGroup4
 
         private void OnReservationInfoTyped(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(name_etr.Text.Trim()) && !String.IsNullOrEmpty(citizenship_etr.Text.Trim()) && citizenship_etr.Text.Length >= 3)
+            if(selectedFlight != null && selectedFlight.ReservationsLeft > 0 && !String.IsNullOrEmpty(name_etr.Text.Trim()) && !String.IsNullOrEmpty(citizenship_etr.Text.Trim()) && citizenship_etr.Text.Length >= 2)
             {
                 if(reserve_btn.BackgroundColor != Color.FromArgb("#6993ff"))
                 {
