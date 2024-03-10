@@ -44,7 +44,7 @@ namespace FlightRMSGroup4
 
             Reservation reservation = new Reservation(reservationCode, flight.Code, name, citizenship);
             _reservations.Add(reservation); // Add reservation to list
-            File.WriteAllText(BackendInfo.GetPath(["Resources", "reservations.json"]), JsonSerializer.Serialize(_reservations, _options));
+            persist();
             flight.ReserveSeat(flight);
         }
 
@@ -104,6 +104,11 @@ namespace FlightRMSGroup4
             }
 
             return reservations;
+        }
+
+        public static void persist()
+        {
+            File.WriteAllText(BackendInfo.GetPath(["Resources", "reservations.json"]), JsonSerializer.Serialize(_reservations, _options));
         }
     }
 }
