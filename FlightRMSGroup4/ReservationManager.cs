@@ -5,13 +5,19 @@ namespace FlightRMSGroup4
 {
     public class ReservationManager
     {
-        private static List<Reservation> _reservations = new List<Reservation>();
+        private static List<Reservation> _reservations = initializeReservationList();
 
         public ReservationManager()
         {
-            _reservations = new List<Reservation>(); // Initialize list
+            _reservations = initializeReservationList(); // Initialize list
         }
 
+        public static JsonSerializerOptions _options = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true,
+        };
+        
         public static void MakeReservation(string reservationCode, Flight flight, string name, string citizenship)
         {
             if (flight == null)
@@ -34,10 +40,10 @@ namespace FlightRMSGroup4
                 throw new Exception("Flight is fully booked!");
             }
 
+            Reservation reservation = new Reservation(reservationCode, flight.Code, name, citizenship);
+            _reservations.Add(reservation); // Add reservation to list
+            File.WriteAllText(BackendInfo.GetPath(["Resources", "reservations.json"]), JsonSerializer.Serialize(_reservations, _options));
             flight.ReserveSeat(flight);
-
-            var reservation = new Reservation(reservationCode, flight.Code, name, citizenship);
-            _reservations.Add(reservation); // Add reservation to internal list
         }
 
         public static List<Reservation> FindReservations(string reservationCode = null, string airline = null, string name = null)
@@ -81,6 +87,21 @@ namespace FlightRMSGroup4
             }
 
             return letter.ToString() + randomNumber;
+        }
+
+        public static List<Reservation> initializeReservationList()
+        {
+            List<Reservation> reservations = new List<Reservation>();
+
+            if (File.Exists(BackendInfo.GetPath(["Resources", "reservations.json"])))
+            {
+                string jsonStr = File.ReadAllText(BackendInfo.GetPath(["Resources", "reservations.json"]));
+                
+                List<Reservation> reservationsFromFile = JsonSerializer.Deserialize<List<Reservation>>(jsonStr);
+                return reservationsFromFile;
+            }
+
+            return reservations;
         }
     }
 }
