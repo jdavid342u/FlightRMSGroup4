@@ -56,7 +56,18 @@ namespace FlightRMSGroup4
             return null;
         }
 
-        public static string GenerateReservationCode()
+        public static string UniqueReservationCode()
+        {
+            string reservationCode;
+            do
+            {
+                reservationCode = RandomReservationCode();
+            } while (_reservations.Any(r => r.ReservationCode == reservationCode));
+
+            return reservationCode;
+        }
+
+        private static string RandomReservationCode()
         {
             Random random = new Random();
             string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -69,8 +80,7 @@ namespace FlightRMSGroup4
                 randomNumber += digits[random.Next(digits.Length)];
             }
 
-            string reservation_code = letter.ToString() + randomNumber;
-            return reservation_code;
+            return letter.ToString() + randomNumber;
         }
     }
 }
