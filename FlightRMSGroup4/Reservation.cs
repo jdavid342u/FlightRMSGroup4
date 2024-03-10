@@ -8,10 +8,15 @@ namespace FlightRMSGroup4
 {
     public class Reservation
     {
+        [System.Text.Json.Serialization.JsonPropertyName("reservationCode")]
         public string ReservationCode { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("flightCode")]
         public string FlightCode { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public string Name { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("citizenship")]
         public string Citizenship { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("isActive")]
         public bool IsActive { get; set; }
 
         public Reservation(string ReservationCode, string FlightCode, string Name, string Citizenship)
