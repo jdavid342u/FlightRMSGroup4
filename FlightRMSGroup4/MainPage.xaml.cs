@@ -130,16 +130,14 @@ namespace FlightRMSGroup4
                 return;
             }
 
-            /* Decrease n. of reservations in the corresponding element of Flights List */
-            BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code).ReservationsLeft--;
-
-            BackendInfo.UpdateFlightsCsvFile();
-            selectedFlight = BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code);
-            reserveFor_lbl.Text = $"Reserve For ({selectedFlight.ReservationsLeft.ToString()} Reservations Available):";
-            
             string reservationCodeStr = GenerateReservationCode();
             string reservName = name_etr.Text.Trim();
             string reservCitizenship = citizenship_etr.Text.Trim();
+            
+            ReservationManager.MakeReservation(BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code), reservName, reservCitizenship);
+            selectedFlight = BackendInfo.Flights.Find(f => f.Code == selectedFlight.Code);
+            reserveFor_lbl.Text = $"Reserve For ({selectedFlight.ReservationsLeft.ToString()} Reservations Available):";
+            
             name_etr.Text = "";
             citizenship_etr.Text = "";
             reservation_code.Text = reservationCodeStr;
