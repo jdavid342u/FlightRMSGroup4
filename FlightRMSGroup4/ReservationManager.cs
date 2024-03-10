@@ -12,7 +12,7 @@ namespace FlightRMSGroup4
             _reservations = new List<Reservation>(); // Initialize list
         }
 
-        public static void MakeReservation(Flight flight, string name, string citizenship)
+        public static void MakeReservation(string reservationCode, Flight flight, string name, string citizenship)
         {
             if (flight == null)
             {
@@ -34,11 +34,9 @@ namespace FlightRMSGroup4
                 throw new Exception("Flight is fully booked!");
             }
 
-            string resCode = "123";
-
             flight.ReserveSeat(flight);
 
-            var reservation = new Reservation(resCode, flight.Code, name, citizenship);
+            var reservation = new Reservation(reservationCode, flight.Code, name, citizenship);
             _reservations.Add(reservation); // Add reservation to internal list
         }
 
@@ -56,6 +54,23 @@ namespace FlightRMSGroup4
         {
             // Need to impliment Flight data, well return null for now
             return null;
+        }
+
+        public static string GenerateReservationCode()
+        {
+            Random random = new Random();
+            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string digits = "0123456789";
+
+            char letter = letters[random.Next(letters.Length)];
+            string randomNumber = "";
+            for (int i = 0; i < 4; i++)
+            {
+                randomNumber += digits[random.Next(digits.Length)];
+            }
+
+            string reservation_code = letter.ToString() + randomNumber;
+            return reservation_code;
         }
     }
 }
