@@ -87,7 +87,7 @@
                 </Grid>
 
                 <Button Text="Reserve" x:Name="reserve_btn" Clicked="OnClick_Reserve" Grid.Row="9" Grid.Column="1" Margin="10" BackgroundColor="#b5b5b5" TextColor="Black"/>
-                <Label Text="Reservation Code" Grid.Row="10" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center"/>
+                <Label Text="Latest Reservation Code" Grid.Row="10" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center"/>
                 <Label Text="- - - - -" x:Name="reservation_code" Grid.Row="10" Grid.Column="1" Margin="30" HorizontalTextAlignment="Center"/>
             </Grid>
 
