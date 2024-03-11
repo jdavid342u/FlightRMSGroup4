@@ -52,16 +52,15 @@ namespace FlightRMSGroup4
         {
             var filteredReservations = _reservations.Where(r =>
                 (string.IsNullOrEmpty(reservationCode) || r.ReservationCode == reservationCode) &&
-                (string.IsNullOrEmpty(airline) || r.FlightCode == GetFlightByCode(r.FlightCode)?.Airline) &&
+                (string.IsNullOrEmpty(airline) || GetFlightByCode(r.FlightCode).Airline.Contains(airline)) &&
                 (string.IsNullOrEmpty(name) || r.Name.Contains(name)));
             return filteredReservations.ToList();
         }
 
         // Helper method to retrieve Flight object based on FlightCode from Reservation
-        private static Flight GetFlightByCode(string flightCode)
+        public static Flight GetFlightByCode(string flightCode)
         {
-            // Need to impliment Flight data, well return null for now
-            return null;
+            return BackendInfo.Flights.Find(x => x.Code == flightCode);
         }
 
         public static string UniqueReservationCode()
