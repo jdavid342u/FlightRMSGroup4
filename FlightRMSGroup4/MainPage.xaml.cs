@@ -11,6 +11,7 @@ namespace FlightRMSGroup4
         ObservableCollection<Airport> airports = new ObservableCollection<Airport>(BackendInfo.Airports);
         ObservableCollection<string> weekDays = new ObservableCollection<string> { "Any", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         ObservableCollection<Flight> queriedFlights = new ObservableCollection<Flight>();
+        ObservableCollection<Reservation> queriedReservations = new ObservableCollection<Reservation>();
         public MainPage()
         {
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace FlightRMSGroup4
 
             queriedFlights_pck.ItemsSource = queriedFlights;
             queriedFlights_pck.ItemDisplayBinding = new Binding("Label");
+
+            queriedReservations_pck.ItemsSource = queriedReservations;
+            queriedReservations_pck.ItemDisplayBinding = new Binding("Label");
         }
 
         private void ChangeFlightInfo(
@@ -147,6 +151,12 @@ namespace FlightRMSGroup4
 
         private void OnClick_FindReservation(object sender, EventArgs e)
         {
+            if (queriedReservations_pck.ItemsSource != null) { queriedReservations_pck.ItemsSource.Clear(); }
+            string resCode = (String.IsNullOrWhiteSpace(reservCode_etr.Text) ? null : reservCode_etr.Text.Trim());
+            string resName = (String.IsNullOrWhiteSpace(reservName_etr.Text) ? null : reservName_etr.Text.Trim());
+            string resAirline = (String.IsNullOrWhiteSpace(reservAirline_etr.Text) ? null : reservAirline_etr.Text.Trim());
+            
+            queriedReservations_pck.ItemsSource = new ObservableCollection<Reservation>(ReservationManager.FindReservations(resCode, resAirline, resName));
             DisplayAlert("Reservation Finder", "Found all matching reservations", "Ok");
         }
 
