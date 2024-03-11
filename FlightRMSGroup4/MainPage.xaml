@@ -112,17 +112,17 @@
 
                 <Label Text="Search" Grid.Row="0" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center" FontSize="Title"/>
 
-                <Label Text="Code:" Grid.Row="1" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
-                <Label Text="Name:" Grid.Row="3" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
-                <Label Text="Airline:" Grid.Row="5" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Code:" Grid.Row="1" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Name:" Grid.Row="3" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Label Text="Airline:" Grid.Row="5" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
                 <Button Text="Find Reservations" x:Name="find_reserve_btn" Clicked="OnClick_FindReservation" Grid.Row="7" Grid.Column="1" Margin="10" TextColor="Black"/>
 
-                <Entry Placeholder="Please enter your reservation code" Grid.Row="2" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
-                <Entry Placeholder="Please enter your name" Grid.Row="4" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
-                <Entry Placeholder="Please enter your chosen airline" Grid.Row="6" Grid.Column="0" Margin="10" TextColor="#6993ff"/>
+                <Entry x:Name="reservCode_etr" Placeholder="Please enter your reservation code" Grid.Row="2" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Entry x:Name="reservName_etr" Placeholder="Please enter your name" Grid.Row="4" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
+                <Entry x:Name="reservAirline_etr" Placeholder="Please enter your chosen airline" Grid.Row="6" Grid.Column="1" Margin="10" TextColor="#6993ff"/>
 
                 <Label Text="Reservations" Grid.Row="8" Grid.Column="1" Margin="10" TextColor="#6993ff" HorizontalTextAlignment="Center" FontSize="Title"/>
-                <Picker Grid.Row="9" Grid.Column="0" Margin="10" TextColor="#6993ff" Grid.ColumnSpan="3"/>
+                <Picker x:Name="queriedReservations_pck" Grid.Row="9" Grid.Column="0" Margin="10" TextColor="#6993ff" Grid.ColumnSpan="3"/>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
